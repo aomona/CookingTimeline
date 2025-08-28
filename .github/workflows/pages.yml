@@ -27,8 +27,8 @@ jobs:
       - name: Prepare artifact
         run: |
           mkdir -p dist
-          cp index.html dist/
-          cp main.js dist/
+          cp src/index.html dist/
+          cp src/main.js dist/
 
       - run: npm ci
 
