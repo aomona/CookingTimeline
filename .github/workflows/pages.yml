@@ -36,7 +36,7 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Build Tailwind (v4 CLI)
-        run: npx build
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
