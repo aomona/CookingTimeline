@@ -8,11 +8,21 @@
   <title>CookingTimeline</title>
 </head>
 <body>
-  <h1 class="text-3xl">Home</h1>
-  <div>
+  <header>
+    <h1 class="text-3xl">CookingTimeline</h1>
+  </header>
+
+  <!-- Home / Menu List -->
+  <section id="home-section">
     <h2 class="text-xl">Select Menu</h2>
-    <select name="menu" id="menu-select"></select>
-    <button disabled id="select-button">Select</button>
-  </div>
+    <ul id="menu-list"></ul>
+  </section>
+
+  <!-- Recipe Detail -->
+  <section id="recipe-section" style="display:none">
+    <nav class="mb-4"><a href="#">← Home</a></nav>
+    <div id="recipe-view"></div>
+    <button>Start Cooking</button>
+  </section>
 </body>
 </html>
