@@ -12,15 +12,15 @@
 			"sumStepTime": 33,       
 			"order": 1
 		},
-    {
-			"id": "pasta2",
-			"title": "パスタ2",
-			"file": "pasta.json",
-			"servings": 2,
-			"tags": ["pasta", "basic", "quick"],
-			"makespan": 24,          
-			"sumStepTime": 33,       
-			"order": 1
+		{
+			"id": "curry",
+			"title": "カレー",
+			"file": "curry.json",
+			"servings": 4,
+			"tags": ["curry", "stew", "basic"],
+			"makespan": 92,
+			"sumStepTime": 92,
+			"order": 2
 		}
 	]
 }

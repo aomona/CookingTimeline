@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "id": "curry",
+  "title": "カレー",
+  "servings": 4,
+  "tags": ["curry", "stew", "basic"],
+  "author": "system",
+  "updatedAt": "2025-08-31",
+  "materials": [
+    { "id": "1",  "name": "玉ねぎ",           "amount": "2個(約300g)" },
+    { "id": "2",  "name": "にんじん",         "amount": "1本" },
+    { "id": "3",  "name": "じゃがいも",       "amount": "2個" },
+    { "id": "4",  "name": "肉(豚or牛or鶏)",   "amount": "300g 一口大" },
+    { "id": "5",  "name": "カレールウ",       "amount": "1/2箱(約100g)" },
+    { "id": "6",  "name": "水",               "amount": "800ml" },
+    { "id": "7",  "name": "サラダ油",         "amount": "大さじ1" },
+    { "id": "8",  "name": "にんにく(お好み)", "amount": "1片 みじん切り" },
+    { "id": "9",  "name": "生姜(お好み)",     "amount": "小さじ1 みじん切り" },
+    { "id": "10", "name": "塩・こしょう",     "amount": "少々" }
+  ],
+  "steps": [
+    {
+      "id": "prep",
+      "label": "材料を切る",
+      "timeline": { "start": 0, "end": 15 },
+      "time": 15,
+      "req": { "hands": 1 },
+      "uses": ["1", "2", "3", "4"],
+      "instructions": "玉ねぎは薄切り。にんじんは乱切り。じゃがいもは一口大に切り、水にさらす。肉は一口大に切り塩こしょうを軽く振る。"
+    },
+    {
+      "id": "saute_onion",
+      "label": "玉ねぎを炒めて甘みを出す",
+      "timeline": { "start": 15, "end": 30 },
+      "time": 15,
+      "req": { "stove": 1, "hands": 1 },
+      "after": ["prep"],
+      "uses": ["1", "7", "8", "9"],
+      "instructions": "鍋に油を熱し、にんにく・生姜を軽く炒め香りを出す。玉ねぎを加え、焦げないように中弱火でじっくり炒める。"
+    },
+    {
+      "id": "brown_meat",
+      "label": "肉を加えて色が変わるまで炒める",
+      "timeline": { "start": 30, "end": 36 },
+      "time": 6,
+      "req": { "stove": 1, "hands": 1 },
+      "after": ["saute_onion"],
+      "uses": ["4", "10"],
+      "instructions": "肉を鍋に入れて表面の色が変わるまで炒め、塩こしょうで軽く下味をつける。"
+    },
+    {
+      "id": "saute_veg",
+      "label": "野菜を加えて油を回す",
+      "timeline": { "start": 36, "end": 42 },
+      "time": 6,
+      "req": { "stove": 1, "hands": 1 },
+      "after": ["brown_meat"],
+      "uses": ["2", "3"],
+      "instructions": "にんじん・じゃがいもを加え、全体に油が回るまで炒める。"
+    },
+    {
+      "id": "simmer1",
+      "label": "水を加えて柔らかくなるまで煮る",
+      "timeline": { "start": 42, "end": 72 },
+      "time": 30,
+      "req": { "stove": 1 },
+      "after": ["saute_veg"],
+      "uses": ["6"],
+      "instructions": "水を注ぎ強火で沸かす。アクを取り、中火〜弱火に落として野菜が柔らかくなるまで煮る。"
+    },
+    {
+      "id": "add_roux",
+      "label": "火を止めてルウを溶かす",
+      "timeline": { "start": 72, "end": 77 },
+      "time": 5,
+      "req": { "hands": 1 },
+      "after": ["simmer1"],
+      "uses": ["5"],
+      "instructions": "火を止め、カレールウを割り入れてゆっくり溶かす。ダマが残らないようよく混ぜる。"
+    },
+    {
+      "id": "simmer2",
+      "label": "とろみが付くまで弱火で煮る",
+      "timeline": { "start": 77, "end": 87 },
+      "time": 10,
+      "req": { "stove": 1 },
+      "after": ["add_roux"],
+      "instructions": "弱火でとろみが付くまで軽く煮る。焦げないよう時々混ぜる。"
+    },
+    {
+      "id": "finish",
+      "label": "味を整えて仕上げ",
+      "timeline": { "start": 87, "end": 92 },
+      "time": 5,
+      "req": { "hands": 1 },
+      "after": ["simmer2"],
+      "uses": ["10"],
+      "instructions": "塩・こしょうで味を整える。必要なら水分量を調整し、火を止めて完成。"
+    }
+  ]
+}
+

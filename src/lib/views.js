@@ -6,7 +6,16 @@ export async function populateMenuSelect() {
 
   try {
     const recipes = await fetchRecipes();
-    list.innerHTML = (recipes || []).map(r => {
+    // manifest.json の order を使って表示順を制御
+    const sorted = (recipes || []).slice().sort((a, b) => {
+      const ao = (a && Number.isFinite(Number(a.order))) ? Number(a.order) : Number.POSITIVE_INFINITY;
+      const bo = (b && Number.isFinite(Number(b.order))) ? Number(b.order) : Number.POSITIVE_INFINITY;
+      if (ao !== bo) return ao - bo;
+      const at = (a && a.title) ? a.title : (a && a.id ? a.id : '');
+      const bt = (b && b.title) ? b.title : (b && b.id ? b.id : '');
+      return String(at).localeCompare(String(bt), 'ja');
+    });
+    list.innerHTML = sorted.map(r => {
       const title = (r && r.title) ? r.title : r.id;
       return `<li><a href="#${r.id}">${title}</a></li>`;
     }).join('') || '<li disabled>レシピがありません</li>';
