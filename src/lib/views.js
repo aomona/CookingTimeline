@@ -40,18 +40,36 @@ export function renderRecipeView(recipe) {
   if (!container) return;
   const tags = ((recipe && recipe.tags) ? recipe.tags : []).map(t => `<span class="mr-2 px-2 py-0.5 rounded bg-gray-200 text-gray-700">${t}</span>`).join('');
   const materials = ((recipe && recipe.materials) ? recipe.materials : []).map(m => `<li>${m.name} <span class="text-gray-500">${m.amount ? m.amount : ''}</span></li>`).join('');
-  const steps = ((recipe && recipe.steps) ? recipe.steps : []).map((s, i) => `
+  const steps = ((recipe && recipe.steps) ? recipe.steps : []).map((s) => `
     <li class="mb-3">
-      <div class="font-semibold">${i + 1}. ${(s.label ? s.label : s.id)}</div>
+      <div class="font-semibold">${(s.label ? s.label : s.id)}</div>
       ${(s.time ? `<div class="text-sm text-gray-600">${s.time} min</div>` : '')}
       ${(s.instructions ? `<div class="mt-1">${s.instructions}</div>` : '')}
     </li>
   `).join('');
+  // タイムライン（開始時刻順に並べる）
+  const timelineItems = ((recipe && recipe.steps) ? recipe.steps : [])
+    .slice()
+    .sort((a, b) => {
+      const as = (a && a.timeline && Number.isFinite(Number(a.timeline.start))) ? Number(a.timeline.start) : Number.POSITIVE_INFINITY;
+      const bs = (b && b.timeline && Number.isFinite(Number(b.timeline.start))) ? Number(b.timeline.start) : Number.POSITIVE_INFINITY;
+      return as - bs;
+    })
+    .map(s => {
+      const start = (s && s.timeline && Number.isFinite(Number(s.timeline.start))) ? Number(s.timeline.start) : null;
+      const end = (s && s.timeline && Number.isFinite(Number(s.timeline.end))) ? Number(s.timeline.end) : null;
+      const range = (start !== null && end !== null) ? `${start}-${end}分` : (s.time ? `${s.time}分` : '');
+      const label = (s && (s.label || s.id)) ? (s.label ? s.label : s.id) : '';
+      return `<li>${range ? `<span class=\"text-gray-600\">${range}</span>：` : ''}${label}</li>`;
+    })
+    .join('');
 
   container.innerHTML = `
     <h2 class="text-2xl mb-2">${(recipe.title ? recipe.title : recipe.id)}</h2>
     <div class="mb-2">Servings: ${(recipe.servings ? recipe.servings : '-')}</div>
     <div class="mb-4">${tags}</div>
+    <h3 class="text-xl mt-4 mb-2">これから作るタイムライン</h3>
+    <ul class="list-disc ml-5 mb-4">${timelineItems}</ul>
     <h3 class="text-xl mt-4 mb-2">材料</h3>
     <ul class="list-disc ml-5 mb-4">${materials}</ul>
     <h3 class="text-xl mt-4 mb-2">手順</h3>
