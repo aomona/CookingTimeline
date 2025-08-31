@@ -1,5 +1,7 @@
 # CookingTimeline
 
+## ファイル構成
+
 **pasta.json（レシピ本体）**
 - ファイル: `src/recipes/pasta.json`
 - 役割: 1つのレシピを完全に表現するJSON。
@@ -32,6 +34,19 @@
     - makespan: 予定の最短所要時間（例: 最終手順の `timeline.end`）。
     - sumStepTime: 全手順の `time` 合計（並列性を無視した総作業時間の目安）。
     - order: 表示順制御などに使える数値。
+
+## コードモジュール構成
+
+**libディレクトリ内のモジュール**
+- `views.js`: メインインデックスファイル（全viewsモジュールを再エクスポート）
+- `views/menu.js`: レシピメニュー一覧表示機能
+- `views/timeline.js`: タイムライン表示とインタラクション機能
+- `views/recipe.js`: レシピ詳細表示機能
+- `views/navigation.js`: セクション切り替えとホーム表示機能
+- `data.js`: データ取得機能
+- `router.js`: ルーティング機能
+
+このモジュール分割により、コードの保守性と可読性が向上し、各機能を独立して編集・テストできるようになっています。views関連の機能は`views/`ディレクトリに整理されており、より直感的な構造になっています。
 
 **新しいレシピを追加する手順**
 - `src/recipes/` に `<id>.json` を作成（`pasta.json` を雛形に流用可）。
