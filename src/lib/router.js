@@ -1,19 +1,17 @@
-import { renderHome, renderRecipeById, renderCookingById } from './views.js';
+import { renderHome, renderRecipeById} from './views.js';
 
 export function parseHash() {
   const h = location.hash.replace(/^#/, '').trim();
-  // 支持形式: ""(home) | "<recipeId>" | "<recipeId>/cooking"
-  if (!h) return { id: null, sub: null };
+  // 支持形式: ""(home) | "<recipeId>""
+  if (!h) return { id: null };
   const parts = h.split('/');
-  return { id: parts[0], sub: parts[1] || null };
+  return { id: parts[0] };
 }
 
 export function handleRoute() {
-  const { id, sub } = parseHash();
+  const { id } = parseHash();
   if (!id) {
     renderHome();
-  } else if (sub === 'cooking') {
-    renderCookingById(id);
   } else {
     renderRecipeById(id);
   }

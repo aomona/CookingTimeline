@@ -19,12 +19,11 @@ export async function populateMenuSelect() {
 export function showSection(section) {
   const home = document.getElementById('home-section');
   const recipe = document.getElementById('recipe-section');
-  const cooking = document.getElementById('cooking-section');
-  if (!home || !recipe || !cooking) return;
+  if (!home || !recipe) return;
 
-  const map = { home, recipe, cooking };
-  Object.values(map).forEach(el => el.style.display = 'none');
-  if (map[section]) map[section].style.display = '';
+  const map = { home, recipe };
+  Object.values(map).forEach(el => el.classList.add('hidden'));
+  if (map[section]) map[section].classList.remove('hidden');
 }
 
 export function renderRecipeView(recipe) {
@@ -69,37 +68,6 @@ export async function renderRecipeById(id) {
     console.error(e);
     alert((e && e.message) ? e.message : '読み込みに失敗しました');
     // フォールバックしてホームへ
-    location.hash = '';
-  }
-}
-
-export function renderCookingView(recipe, id) {
-  const container = document.getElementById('cooking-view');
-  if (!container) return;
-  const steps = ((recipe && recipe.steps) ? recipe.steps : []).map(s => {
-    const st = (s.timeline && typeof s.timeline.start === 'number') ? s.timeline.start : null;
-    const en = (s.timeline && typeof s.timeline.end === 'number') ? s.timeline.end : null;
-    const time = (st !== null && en !== null) ? `${st}-${en} min` : (s.time ? `${s.time} min` : '-');
-    return `<li class="mb-3">
-      <div class="font-semibold">${(s.label ? s.label : s.id)}</div>
-      <div class="text-sm text-gray-600">${time}</div>
-      ${(s.instructions ? `<div class="mt-1">${s.instructions}</div>` : '')}
-    </li>`;
-  }).join('');
-  container.innerHTML = `
-    <nav class="mb-4"><a href="#${id}">← Recipe</a> / <a href="#">Home</a></nav>
-    <ol class="list-decimal ml-5">${steps}</ol>
-  `;
-}
-
-export async function renderCookingById(id) {
-  try {
-    const recipe = await getRecipeDataById(id);
-    renderCookingView(recipe, id);
-    showSection('cooking');
-  } catch (e) {
-    console.error(e);
-    alert((e && e.message) ? e.message : '読み込みに失敗しました');
     location.hash = '';
   }
 }
