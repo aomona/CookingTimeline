@@ -7,22 +7,49 @@
   <script type="module" src="./main.js"></script>
   <title>CookingTimeline</title>
 </head>
-<body>
-  <header>
-    <h1 class="text-3xl">CookingTimeline</h1>
+<body class="bg-gray-50 min-h-screen">
+  <header class="bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg">
+    <div class="container mx-auto px-4 py-6">
+      <h1 class="text-4xl font-bold flex items-center">
+        ⏲
+        CookingTimeline
+      </h1>
+      <p class="text-blue-100 mt-2">料理のタイムラインを見える化して、効率的な調理をサポート</p>
+    </div>
   </header>
 
-  <!-- Home / Menu List -->
-  <section id="home-section" class="hidden">
-    <h2 class="text-xl">Select Menu</h2>
-    <ul id="menu-list"></ul>
-  </section>
+  <main class="container mx-auto px-4 py-8">
+    <!-- Home / Menu List -->
+    <section id="home-section" class="hidden">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-4">レシピを選択してください</h2>
+          <p class="text-gray-600">お好みのレシピを選んで、効率的な調理手順を確認しましょう</p>
+        </div>
+        <ul id="menu-list" class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"></ul>
+      </div>
+    </section>
 
-  <!-- Recipe Detail -->
-  <section id="recipe-section" class="hidden">
-    <nav class="mb-4"><a href="#">← Home</a></nav>
-    <div id="recipe-view"></div>
-    <a id="start-cooking">Start Cooking</a>
-  </section>
+    <!-- Recipe Detail -->
+    <section id="recipe-section" class="hidden">
+      <nav class="mb-6">
+        <a href="#" class="inline-flex items-center px-4 py-2 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow text-gray-700 hover:text-blue-600 border border-gray-200">
+          <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+          </svg>
+          ホームに戻る
+        </a>
+      </nav>
+      <div id="recipe-view"></div>
+      <div class="mt-8 text-center">
+        <a id="start-cooking" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all hover:from-green-600 hover:to-green-700">
+          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+          </svg>
+          調理を開始
+        </a>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
