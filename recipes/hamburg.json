@@ -3,8 +3,7 @@
   "id": "hamburg",
   "title": "ハンバーグ",
   "servings": 2,
-  "tags": ["meat", "pan", "japanese"],
-  "genre": "western",
+  "genre": "japanese",
   "author": "system",
   "updatedAt": "2025-09-02",
   "materials": [
