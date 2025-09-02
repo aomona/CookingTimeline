@@ -129,7 +129,6 @@ npm run build
 - `lib/scheduler.js`: 衝突検知・スケジューリング
 - `recipes/`: マニフェストとレシピ本体
 - `input.css` → `output.css`: Tailwind v4 CLI で生成
-- `test.html`: UI プロトタイプ（アプリ本体とは分離）
 
 ## ローカルストレージ
 
