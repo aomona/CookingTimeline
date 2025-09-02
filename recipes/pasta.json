@@ -4,6 +4,7 @@
   "title": "パスタ",
   "servings": 2,
   "tags": ["pasta", "basic", "quick"],
+  "genre": "italian",
   "author": "system",
   "updatedAt": "2025-08-30",
   "materials": [

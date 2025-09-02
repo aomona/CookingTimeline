@@ -4,6 +4,7 @@
   "title": "餃子",
   "servings": 3,
   "tags": ["dumpling", "pan", "chinese"],
+  "genre": "chinese",
   "author": "system",
   "updatedAt": "2025-09-02",
   "materials": [
@@ -99,4 +100,3 @@
     }
   ]
 }
-

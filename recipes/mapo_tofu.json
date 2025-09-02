@@ -4,6 +4,7 @@
   "title": "麻婆豆腐",
   "servings": 3,
   "tags": ["chinese", "spicy", "stir-fry"],
+  "genre": "chinese",
   "author": "system",
   "updatedAt": "2025-09-02",
   "materials": [
@@ -101,4 +102,3 @@
     }
   ]
 }
-

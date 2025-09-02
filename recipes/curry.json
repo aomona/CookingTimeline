@@ -4,6 +4,7 @@
   "title": "カレー",
   "servings": 4,
   "tags": ["curry", "stew", "basic"],
+  "genre": "japanese",
   "author": "system",
   "updatedAt": "2025-08-31",
   "materials": [

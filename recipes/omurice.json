@@ -4,6 +4,7 @@
   "title": "オムライス",
   "servings": 2,
   "tags": ["rice", "egg", "quick"],
+  "genre": "japanese",
   "author": "system",
   "updatedAt": "2025-09-02",
   "materials": [
@@ -88,4 +89,3 @@
     }
   ]
 }
-

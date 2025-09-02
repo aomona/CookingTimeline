@@ -4,6 +4,7 @@
   "title": "ハンバーグ",
   "servings": 2,
   "tags": ["meat", "pan", "japanese"],
+  "genre": "western",
   "author": "system",
   "updatedAt": "2025-09-02",
   "materials": [
@@ -108,4 +109,3 @@
     }
   ]
 }
-

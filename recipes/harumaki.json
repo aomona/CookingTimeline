@@ -4,6 +4,7 @@
   "title": "春巻き",
   "servings": 4,
   "tags": ["fried", "chinese", "snack"],
+  "genre": "chinese",
   "author": "system",
   "updatedAt": "2025-09-02",
   "materials": [
@@ -100,4 +101,3 @@
     }
   ]
 }
-

@@ -10,6 +10,7 @@
   - id/title: レシピの識別子と表示名。
   - servings: 何人分か。
   - tags: タグ配列（例: pasta/basic/quick）。
+  - genre: 料理のジャンル（例: japanese/chinese/italian/western/other）。
   - author/updatedAt: 作成者と更新日。
   - materials: 材料の配列。各要素は `{ id, name, amount }` を持ちます。
     - id は手順で利用する参照キー（`steps[].uses` と紐付く）です。
@@ -30,10 +31,14 @@
   - recipes: レシピメタの配列。各要素は以下を含みます。
     - id/title: レシピの識別子と表示名。
     - file: レシピ本体JSONのファイル名（相対パス、例: `pasta.json`）。
-    - servings/tags: 一覧表示用の補助情報。
+    - servings/tags/genre: 一覧表示用の補助情報。
     - makespan: 予定の最短所要時間（例: 最終手順の `timeline.end`）。
     - sumStepTime: 全手順の `time` 合計（並列性を無視した総作業時間の目安）。
     - order: 表示順制御などに使える数値。
+
+### ホーム画面のジャンル絞り込み
+- メニュー上部の「ジャンル」セレクトで一覧を絞り込み可能。
+- 選択状態はローカルに保存され、ホーム再訪時も維持されます。
 
 ## コードモジュール構成
 

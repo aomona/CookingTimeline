@@ -4,6 +4,7 @@
   "title": "グリーンサラダ",
   "servings": 2,
   "tags": ["salad", "quick", "healthy"],
+  "genre": "western",
   "author": "system",
   "updatedAt": "2025-09-02",
   "materials": [
@@ -67,4 +68,3 @@
     }
   ]
 }
-

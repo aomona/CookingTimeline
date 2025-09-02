@@ -4,6 +4,7 @@
   "title": "チャーハン",
   "servings": 2,
   "tags": ["rice", "quick", "one-pan"],
+  "genre": "chinese",
   "author": "system",
   "updatedAt": "2025-09-02",
   "materials": [
@@ -102,4 +103,3 @@
     }
   ]
 }
-
