@@ -21,6 +21,26 @@
 			"makespan": 92,
 			"sumStepTime": 92,
 			"order": 2
+		},
+		{
+			"id": "salad",
+			"title": "グリーンサラダ",
+			"file": "salad.json",
+			"servings": 2,
+			"tags": ["salad", "quick", "healthy"],
+			"makespan": 12,
+			"sumStepTime": 17,
+			"order": 3
+		},
+		{
+			"id": "fried_rice",
+			"title": "チャーハン",
+			"file": "fried_rice.json",
+			"servings": 2,
+			"tags": ["rice", "quick", "one-pan"],
+			"makespan": 16,
+			"sumStepTime": 17,
+			"order": 4
 		}
 	]
 }
