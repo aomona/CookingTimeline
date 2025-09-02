@@ -1,0 +1,92 @@
+{
+  "version": 2,
+  "id": "gratin",
+  "title": "グラタン",
+  "servings": 3,
+  "tags": ["oven", "pasta", "bake"],
+  "author": "system",
+  "updatedAt": "2025-09-02",
+  "materials": [
+    { "id": "1",  "name": "マカロニ",           "amount": "120g" },
+    { "id": "2",  "name": "鶏もも肉",           "amount": "150g(一口大)" },
+    { "id": "3",  "name": "玉ねぎ",             "amount": "1/2個(薄切り)" },
+    { "id": "4",  "name": "マッシュルーム",     "amount": "4個(薄切り)" },
+    { "id": "5",  "name": "バター",             "amount": "40g" },
+    { "id": "6",  "name": "薄力粉",             "amount": "大さじ3" },
+    { "id": "7",  "name": "牛乳",               "amount": "500ml" },
+    { "id": "8",  "name": "塩・こしょう",       "amount": "少々" },
+    { "id": "9",  "name": "ピザ用チーズ",       "amount": "80g" },
+    { "id": "10", "name": "パン粉",             "amount": "大さじ2" },
+    { "id": "11", "name": "サラダ油",           "amount": "小さじ1" },
+    { "id": "12", "name": "塩(茹で用)",         "amount": "適量" }
+  ],
+  "steps": [
+    {
+      "id": "prep",
+      "label": "材料を切る",
+      "timeline": { "start": 0, "end": 10 },
+      "time": 10,
+      "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 15,
+      "uses": ["2", "3", "4"],
+      "instructions": "鶏肉・玉ねぎ・マッシュルームを切る。オーブンを予熱(200℃)。"
+    },
+    {
+      "id": "boil_mac",
+      "label": "マカロニを茹でる",
+      "timeline": { "start": 5, "end": 15 },
+      "time": 10,
+      "req": { "stove": 1 },
+      "kind": "cook",
+      "slack": 5,
+      "uses": ["1", "12"],
+      "instructions": "塩を加えた湯でマカロニを表示時間通り茹でる。"
+    },
+    {
+      "id": "bechamel",
+      "label": "ホワイトソースを作る",
+      "timeline": { "start": 10, "end": 20 },
+      "time": 10,
+      "req": { "stove": 1, "hands": 1 },
+      "kind": "cook",
+      "slack": 10,
+      "uses": ["5", "6", "7", "8"],
+      "instructions": "鍋でバターを溶かし小麦粉を炒め、牛乳を数回に分けて加えとろみを付ける。塩こしょうで調える。"
+    },
+    {
+      "id": "assemble",
+      "label": "具と和えて器に詰める",
+      "timeline": { "start": 20, "end": 25 },
+      "time": 5,
+      "req": { "hands": 1 },
+      "kind": "finish",
+      "slack": 5,
+      "uses": ["1", "2", "3", "4", "9", "10"],
+      "instructions": "茹でたマカロニ・鶏肉・玉ねぎ・マッシュルームをソースに絡め、耐熱皿に入れチーズとパン粉をのせる。"
+    },
+    {
+      "id": "bake",
+      "label": "焼く",
+      "timeline": { "start": 25, "end": 37 },
+      "time": 12,
+      "req": { "oven": 1 },
+      "kind": "cook",
+      "slack": 10,
+      "uses": ["9", "10"],
+      "instructions": "予熱したオーブンで焼き色が付くまで焼く。"
+    },
+    {
+      "id": "finish",
+      "label": "仕上げ",
+      "timeline": { "start": 37, "end": 40 },
+      "time": 3,
+      "req": { "hands": 1 },
+      "kind": "finish",
+      "slack": 5,
+      "uses": ["8"],
+      "instructions": "少し冷まして落ち着かせ、味を整える。"
+    }
+  ]
+}
+

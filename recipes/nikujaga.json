@@ -1,0 +1,82 @@
+{
+  "version": 2,
+  "id": "nikujaga",
+  "title": "肉じゃが",
+  "servings": 4,
+  "tags": ["stew", "japanese", "basic"],
+  "author": "system",
+  "updatedAt": "2025-09-02",
+  "materials": [
+    { "id": "1",  "name": "玉ねぎ",             "amount": "1個(薄切り)" },
+    { "id": "2",  "name": "じゃがいも",         "amount": "3個(一口大)" },
+    { "id": "3",  "name": "にんじん",           "amount": "1本(乱切り)" },
+    { "id": "4",  "name": "牛薄切り肉",         "amount": "250g" },
+    { "id": "5",  "name": "しらたき",           "amount": "200g(下ゆで用)" },
+    { "id": "6",  "name": "砂糖",               "amount": "大さじ2" },
+    { "id": "7",  "name": "しょうゆ",           "amount": "大さじ3" },
+    { "id": "8",  "name": "みりん",             "amount": "大さじ2" },
+    { "id": "9",  "name": "酒",                 "amount": "大さじ2" },
+    { "id": "10", "name": "だし(または水)",     "amount": "400ml" },
+    { "id": "11", "name": "サラダ油",           "amount": "大さじ1" }
+  ],
+  "steps": [
+    {
+      "id": "prep",
+      "label": "材料を切る",
+      "timeline": { "start": 0, "end": 12 },
+      "time": 12,
+      "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 20,
+      "uses": ["1", "2", "3", "4", "5"],
+      "instructions": "玉ねぎは薄切り、じゃがいもは一口大、にんじんは乱切り。牛肉は食べやすく切る。しらたきは食べやすく切る。"
+    },
+    {
+      "id": "blanch_shirataki",
+      "label": "しらたきを下ゆでする",
+      "timeline": { "start": 5, "end": 10 },
+      "time": 5,
+      "req": { "stove": 1 },
+      "kind": "cook",
+      "slack": 10,
+      "uses": ["5"],
+      "instructions": "沸騰した湯でしらたきをさっと下ゆでし、ザルにあげて臭みを抜く。"
+    },
+    {
+      "id": "saute",
+      "label": "材料を炒める",
+      "timeline": { "start": 12, "end": 20 },
+      "time": 8,
+      "req": { "stove": 1, "hands": 1 },
+      "kind": "cook",
+      "slack": 10,
+      "after": ["prep"],
+      "uses": ["11", "1", "4"],
+      "instructions": "鍋に油を熱し、玉ねぎを炒めて甘みを出し、牛肉を加えて色が変わるまで炒める。"
+    },
+    {
+      "id": "simmer",
+      "label": "調味して煮含める",
+      "timeline": { "start": 20, "end": 45 },
+      "time": 25,
+      "req": { "stove": 1 },
+      "kind": "cook",
+      "slack": 20,
+      "after": ["saute"],
+      "uses": ["2", "3", "5", "6", "7", "8", "9", "10"],
+      "instructions": "じゃがいも・にんじん・しらたきを加え、だしと調味料(砂糖・しょうゆ・みりん・酒)を入れる。沸いたらアクを取り、落とし蓋をして中火〜弱火で煮含める。"
+    },
+    {
+      "id": "finish",
+      "label": "味を整えて仕上げ",
+      "timeline": { "start": 45, "end": 50 },
+      "time": 5,
+      "req": { "hands": 1 },
+      "kind": "finish",
+      "slack": 10,
+      "after": ["simmer"],
+      "instructions": "火を止め、数分おいて味をなじませる。必要ならしょうゆで調整。"
+    }
+  ]
+}
+

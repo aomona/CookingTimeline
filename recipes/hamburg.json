@@ -1,0 +1,111 @@
+{
+  "version": 2,
+  "id": "hamburg",
+  "title": "ハンバーグ",
+  "servings": 2,
+  "tags": ["meat", "pan", "japanese"],
+  "author": "system",
+  "updatedAt": "2025-09-02",
+  "materials": [
+    { "id": "1",  "name": "合いびき肉",           "amount": "300g" },
+    { "id": "2",  "name": "玉ねぎ",               "amount": "1/2個(みじん)" },
+    { "id": "3",  "name": "パン粉",               "amount": "1/2カップ" },
+    { "id": "4",  "name": "牛乳",                 "amount": "大さじ3" },
+    { "id": "5",  "name": "卵",                   "amount": "1個" },
+    { "id": "6",  "name": "塩・こしょう",         "amount": "少々" },
+    { "id": "7",  "name": "ナツメグ",             "amount": "少々" },
+    { "id": "8",  "name": "サラダ油",             "amount": "大さじ1" },
+    { "id": "9",  "name": "赤ワイン",             "amount": "大さじ2" },
+    { "id": "10", "name": "ケチャップ",           "amount": "大さじ2" },
+    { "id": "11", "name": "中濃ソース",           "amount": "大さじ1" },
+    { "id": "12", "name": "バター",               "amount": "10g" }
+  ],
+  "steps": [
+    {
+      "id": "saute_onion",
+      "label": "玉ねぎを炒めて冷ます",
+      "timeline": { "start": 0, "end": 8 },
+      "time": 8,
+      "req": { "stove": 1, "hands": 1 },
+      "kind": "cook",
+      "slack": 10,
+      "uses": ["8", "2"],
+      "instructions": "油で玉ねぎをしんなりするまで炒め、バットに広げて冷ます。"
+    },
+    {
+      "id": "cool_onion",
+      "label": "玉ねぎを冷ます",
+      "timeline": { "start": 8, "end": 13 },
+      "time": 5,
+      "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 10,
+      "instructions": "粗熱をとる。"
+    },
+    {
+      "id": "mix",
+      "label": "タネを混ぜる",
+      "timeline": { "start": 13, "end": 18 },
+      "time": 5,
+      "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 10,
+      "uses": ["1", "3", "4", "5", "6", "7", "2"],
+      "instructions": "ひき肉・炒め玉ねぎ・パン粉・牛乳・卵・塩こしょう・ナツメグを粘りが出るまで混ぜる。"
+    },
+    {
+      "id": "shape",
+      "label": "成形",
+      "timeline": { "start": 18, "end": 21 },
+      "time": 3,
+      "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 5,
+      "instructions": "空気を抜き小判形に整える。"
+    },
+    {
+      "id": "sear",
+      "label": "焼き色をつける",
+      "timeline": { "start": 21, "end": 27 },
+      "time": 6,
+      "req": { "stove": 1, "hands": 1 },
+      "kind": "cook",
+      "slack": 5,
+      "uses": ["8"],
+      "instructions": "油を熱したフライパンで表面に焼き色をつける。"
+    },
+    {
+      "id": "steam",
+      "label": "蒸し焼きで火入れ",
+      "timeline": { "start": 27, "end": 35 },
+      "time": 8,
+      "req": { "stove": 1 },
+      "kind": "cook",
+      "slack": 10,
+      "uses": ["9"],
+      "instructions": "赤ワインを加え、蓋をして弱火で中まで火を通す。"
+    },
+    {
+      "id": "sauce",
+      "label": "ソースを作る",
+      "timeline": { "start": 35, "end": 39 },
+      "time": 4,
+      "req": { "stove": 1 },
+      "kind": "cook",
+      "slack": 5,
+      "uses": ["10", "11", "12"],
+      "instructions": "肉を取り出し、同じフライパンでケチャップ・中濃ソース・バターでソースを作る。"
+    },
+    {
+      "id": "plate",
+      "label": "盛り付け",
+      "timeline": { "start": 39, "end": 41 },
+      "time": 2,
+      "req": { "hands": 1 },
+      "kind": "finish",
+      "slack": 5,
+      "instructions": "ハンバーグにソースをかけて完成。"
+    }
+  ]
+}
+

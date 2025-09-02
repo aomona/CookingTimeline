@@ -1,0 +1,90 @@
+{
+  "version": 2,
+  "id": "shumai",
+  "title": "シュウマイ",
+  "servings": 4,
+  "tags": ["dumpling", "steam", "chinese"],
+  "author": "system",
+  "updatedAt": "2025-09-02",
+  "materials": [
+    { "id": "1",  "name": "シュウマイの皮",     "amount": "20枚" },
+    { "id": "2",  "name": "豚ひき肉",           "amount": "250g" },
+    { "id": "3",  "name": "玉ねぎ",             "amount": "1/2個(みじん)" },
+    { "id": "4",  "name": "片栗粉",             "amount": "大さじ1" },
+    { "id": "5",  "name": "しょうゆ",           "amount": "大さじ1" },
+    { "id": "6",  "name": "砂糖",               "amount": "小さじ1" },
+    { "id": "7",  "name": "ごま油",             "amount": "小さじ1" },
+    { "id": "8",  "name": "塩・こしょう",       "amount": "少々" },
+    { "id": "9",  "name": "生姜(みじん)",       "amount": "1片" },
+    { "id": "10", "name": "サラダ油",           "amount": "少々" },
+    { "id": "11", "name": "水(蒸し用)",         "amount": "適量" }
+  ],
+  "steps": [
+    {
+      "id": "mix_filling",
+      "label": "タネを作る",
+      "timeline": { "start": 0, "end": 12 },
+      "time": 12,
+      "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 15,
+      "uses": ["2", "3", "4", "5", "6", "7", "8", "9"],
+      "instructions": "材料を粘りが出るまで混ぜる。"
+    },
+    {
+      "id": "wrap",
+      "label": "包む",
+      "timeline": { "start": 12, "end": 24 },
+      "time": 12,
+      "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 10,
+      "uses": ["1", "10"],
+      "instructions": "皮にタネを詰め、底面に油を薄く塗る。"
+    },
+    {
+      "id": "prep_steamer",
+      "label": "蒸し器を準備",
+      "timeline": { "start": 10, "end": 20 },
+      "time": 10,
+      "req": { "stove": 1 },
+      "kind": "cook",
+      "slack": 10,
+      "uses": ["11"],
+      "instructions": "湯を沸かして蒸気を安定させる。"
+    },
+    {
+      "id": "steam",
+      "label": "蒸す",
+      "timeline": { "start": 20, "end": 30 },
+      "time": 10,
+      "req": { "stove": 1 },
+      "kind": "cook",
+      "slack": 10,
+      "after": ["wrap", "prep_steamer"],
+      "uses": ["1"],
+      "instructions": "中火で透明感が出るまで蒸す。"
+    },
+    {
+      "id": "rest",
+      "label": "落ち着かせる",
+      "timeline": { "start": 30, "end": 32 },
+      "time": 2,
+      "req": { "hands": 1 },
+      "kind": "finish",
+      "slack": 5,
+      "instructions": "蒸し器から出して少し置く。"
+    },
+    {
+      "id": "plate",
+      "label": "盛り付け",
+      "timeline": { "start": 32, "end": 34 },
+      "time": 2,
+      "req": { "hands": 1 },
+      "kind": "finish",
+      "slack": 5,
+      "instructions": "器に盛る。"
+    }
+  ]
+}
+

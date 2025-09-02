@@ -41,6 +41,96 @@
 			"makespan": 16,
 			"sumStepTime": 17,
 			"order": 4
+		},
+		{
+			"id": "nikujaga",
+			"title": "肉じゃが",
+			"file": "nikujaga.json",
+			"servings": 4,
+			"tags": ["stew", "japanese", "basic"],
+			"makespan": 50,
+			"sumStepTime": 55,
+			"order": 5
+		},
+		{
+			"id": "tonkatsu",
+			"title": "とんかつ",
+			"file": "tonkatsu.json",
+			"servings": 2,
+			"tags": ["fried", "pork", "japanese"],
+			"makespan": 22,
+			"sumStepTime": 28,
+			"order": 6
+		},
+		{
+			"id": "harumaki",
+			"title": "春巻き",
+			"file": "harumaki.json",
+			"servings": 4,
+			"tags": ["fried", "chinese", "snack"],
+			"makespan": 39,
+			"sumStepTime": 44,
+			"order": 7
+		},
+		{
+			"id": "omurice",
+			"title": "オムライス",
+			"file": "omurice.json",
+			"servings": 2,
+			"tags": ["rice", "egg", "quick"],
+			"makespan": 18,
+			"sumStepTime": 20,
+			"order": 8
+		},
+		{
+			"id": "gratin",
+			"title": "グラタン",
+			"file": "gratin.json",
+			"servings": 3,
+			"tags": ["oven", "pasta", "bake"],
+			"makespan": 40,
+			"sumStepTime": 50,
+			"order": 9
+		},
+		{
+			"id": "hamburg",
+			"title": "ハンバーグ",
+			"file": "hamburg.json",
+			"servings": 2,
+			"tags": ["meat", "pan", "japanese"],
+			"makespan": 41,
+			"sumStepTime": 41,
+			"order": 10
+		},
+		{
+			"id": "gyoza",
+			"title": "餃子",
+			"file": "gyoza.json",
+			"servings": 3,
+			"tags": ["dumpling", "pan", "chinese"],
+			"makespan": 33,
+			"sumStepTime": 35,
+			"order": 11
+		},
+		{
+			"id": "mapo_tofu",
+			"title": "麻婆豆腐",
+			"file": "mapo_tofu.json",
+			"servings": 3,
+			"tags": ["chinese", "spicy", "stir-fry"],
+			"makespan": 18,
+			"sumStepTime": 20,
+			"order": 12
+		},
+		{
+			"id": "shumai",
+			"title": "シュウマイ",
+			"file": "shumai.json",
+			"servings": 4,
+			"tags": ["dumpling", "steam", "chinese"],
+			"makespan": 34,
+			"sumStepTime": 48,
+			"order": 13
 		}
 	]
 }

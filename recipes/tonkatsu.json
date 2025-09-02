@@ -1,0 +1,88 @@
+{
+  "version": 2,
+  "id": "tonkatsu",
+  "title": "とんかつ",
+  "servings": 2,
+  "tags": ["fried", "pork", "japanese"],
+  "author": "system",
+  "updatedAt": "2025-09-02",
+  "materials": [
+    { "id": "1", "name": "豚ロース肉(とんかつ用)", "amount": "2枚" },
+    { "id": "2", "name": "塩・こしょう",           "amount": "少々" },
+    { "id": "3", "name": "薄力粉",                 "amount": "適量" },
+    { "id": "4", "name": "卵",                     "amount": "1個(溶き卵)" },
+    { "id": "5", "name": "パン粉",                 "amount": "適量" },
+    { "id": "6", "name": "揚げ油",                 "amount": "適量" },
+    { "id": "7", "name": "キャベツ(千切り)",       "amount": "100g" },
+    { "id": "8", "name": "とんかつソース",         "amount": "適量" }
+  ],
+  "steps": [
+    {
+      "id": "prep",
+      "label": "肉の下処理",
+      "timeline": { "start": 0, "end": 5 },
+      "time": 5,
+      "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 10,
+      "uses": ["1", "2"],
+      "instructions": "筋切りし、塩こしょうで下味を付ける。"
+    },
+    {
+      "id": "coat",
+      "label": "衣を付ける(粉→卵→パン粉)",
+      "timeline": { "start": 5, "end": 11 },
+      "time": 6,
+      "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 10,
+      "uses": ["3", "4", "5"],
+      "instructions": "薄力粉→溶き卵→パン粉の順に丁寧に衣をつける。"
+    },
+    {
+      "id": "preheat_oil",
+      "label": "油を予熱",
+      "timeline": { "start": 5, "end": 10 },
+      "time": 5,
+      "req": { "stove": 1 },
+      "kind": "cook",
+      "slack": 10,
+      "uses": ["6"],
+      "instructions": "170–180℃を目安に油を温める。"
+    },
+    {
+      "id": "fry",
+      "label": "揚げる",
+      "timeline": { "start": 10, "end": 18 },
+      "time": 8,
+      "req": { "stove": 1, "hands": 1 },
+      "kind": "cook",
+      "slack": 5,
+      "after": ["preheat_oil", "coat"],
+      "uses": ["1", "6"],
+      "instructions": "衣がきつね色になるまで揚げる。途中で返して均一に火入れ。"
+    },
+    {
+      "id": "drain",
+      "label": "油を切る",
+      "timeline": { "start": 18, "end": 20 },
+      "time": 2,
+      "req": { "hands": 1 },
+      "kind": "finish",
+      "slack": 5,
+      "instructions": "網に上げて油を切り、余熱で火を通す。"
+    },
+    {
+      "id": "plate",
+      "label": "切り分けて盛り付け",
+      "timeline": { "start": 20, "end": 22 },
+      "time": 2,
+      "req": { "hands": 1 },
+      "kind": "finish",
+      "slack": 5,
+      "uses": ["7", "8"],
+      "instructions": "キャベツを添え、食べやすく切ってソースをかける。"
+    }
+  ]
+}
+
