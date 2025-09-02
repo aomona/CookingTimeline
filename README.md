@@ -1,79 +1,148 @@
 # CookingTimeline
 
-## ファイル構成
+料理の工程を「タイムライン」で見える化し、複数レシピの同時進行を計画・最適化・再生できる、静的フロントエンドアプリです。資源（コンロ/手作業/オーブン）上限に基づく衝突検知、進行中タスクの提示、デスクトップ通知に対応します。
 
-**pasta.json（レシピ本体）**
-- ファイル: `recipes/pasta.json`
-- 役割: 1つのレシピを完全に表現するJSON。
-- 主なフィールド:
-  - version: スキーマのバージョン番号。
-  - id/title: レシピの識別子と表示名。
-  - servings: 何人分か。
-  - tags: タグ配列（例: pasta/basic/quick）。
-  - genre: 料理のジャンル（例: japanese/chinese/italian/western/other）。
-  - author/updatedAt: 作成者と更新日。
-  - materials: 材料の配列。各要素は `{ id, name, amount }` を持ちます。
-    - id は手順で利用する参照キー（`steps[].uses` と紐付く）です。
-  - steps: 手順の配列。各手順は以下を持ちます。
-    - id/label: 手順IDと表示名。
-    - timeline: `{ start, end }` 形式の予定時刻（分）。他手順と重複して同時進行可能です。
-    - time: 手順の所要分数（`end - start` と一致する想定）。
-    - req: リソース要求（例: `{"stove":1,"hands":1}`）。
-    - after: 依存する手順ID配列（開始順序の制約）。
-    - uses: 使用する材料ID配列（`materials[].id` を参照）。
-    - instructions: 手順の具体的な説明テキスト。
+## 特長
 
-**manifest.json（レシピ一覧メタ）**
-- ファイル: `recipes/manifest.json`
-- 役割: 一覧表示や読み込み用の軽量メタデータ。UI はまずこのファイルを読み、選択後に対象レシピJSONを取得します。
-- 主なフィールド:
-  - version/generatedAt: マニフェストのスキーマ版と生成日。
-  - recipes: レシピメタの配列。各要素は以下を含みます。
-    - id/title: レシピの識別子と表示名。
-    - file: レシピ本体JSONのファイル名（相対パス、例: `pasta.json`）。
-    - servings/tags/genre: 一覧表示用の補助情報。
-    - makespan: 予定の最短所要時間（例: 最終手順の `timeline.end`）。
-    - sumStepTime: 全手順の `time` 合計（並列性を無視した総作業時間の目安）。
-    - order: 表示順制御などに使える数値。
+- 複数レシピの結合タイムライン: 選んだレシピを1本の時間軸に統合
+- 資源制約の可視化: 上限超過区間を赤帯で表示（衝突検知）
+- シンプルなスケジューリング: 後方寄せ→貪欲配置→レベリングのパイプライン
+- 調理の「再生」: 速度変更・現在のタスク・残り時間・通知
+- すべて静的ファイル: どこでも配信できる（GitHub Pages 等）
 
-### ホーム画面のジャンル絞り込み
-- メニュー上部の「ジャンル」セレクトで一覧を絞り込み可能。
-- 選択状態はローカルに保存され、ホーム再訪時も維持されます。
+> 注意: 収録レシピはAI生成です。実際の調理では適宜ご判断ください。
 
-## コードモジュール構成
+## クイックスタート
 
-**libディレクトリ内のモジュール**
-- `views.js`: メインインデックスファイル（全viewsモジュールを再エクスポート）
-- `views/menu.js`: レシピメニュー一覧表示機能
-- `views/timeline.js`: タイムライン表示とインタラクション機能
-- `views/recipe.js`: レシピ詳細表示機能
-- `views/navigation.js`: セクション切り替えとホーム表示機能
-- `data.js`: データ取得機能
-- `router.js`: ルーティング機能
+前提: Node.js 18 以上推奨
 
-### 複数レシピ対応 (MVP)
-- ルート:
-  - `#plan/<id,id,...>` で結合タイムライン（プラン画面）
-  - `#cook/<id,id,...>` で一括再生（調理画面）
-- `views/multi-timeline.js`: 複数レシピのステップを結合して表示。資源（コンロ/手作業/オーブン）上限を指定し、衝突検知・最適化に対応。
-- `views/multi-cooking.js`: 結合ステップの再生（速度変更/通知）。
-- `scheduler.js`: 資源制約付きのスケジューラと衝突検知ロジック（貪欲 + 後方スケジュール + レベリング）。
-- 資源上限はローカルストレージ `ct-capacity` に保存/復元。
+1) 依存関係をインストール
 
-#### 複数レシピ最適化の使い方
-- 目的: 「衝突最小化」または「手作業ピーク抑制」を選択
-- 提供時刻(分): 任意で目標終了時刻を指定（後方スケジュールで寄せる）
-- 最適化して衝突解消: 上記の条件でスケジュールを再計算
-- タイムライン上部の灰色バーに赤い帯で衝突区間を可視化
+```
+npm install
+```
 
-### スキーマ v2（後方互換なし）
-- `steps[].kind`: `prep|cook|finish` などのカテゴリ
-- `steps[].slack`: その工程の開始を元の `timeline.start` から後ろにずらせる許容分数
-- 既存フィールド（`timeline`, `time`, `req`, `after`）は維持
+2) CSS をビルド（監視）
 
-このモジュール分割により、コードの保守性と可読性が向上し、各機能を独立して編集・テストできるようになっています。views関連の機能は`views/`ディレクトリに整理されており、より直感的な構造になっています。
+```
+npm run dev
+```
 
-**新しいレシピを追加する手順**
-- `recipes/` に `<id>.json` を作成（`pasta.json` を雛形に流用可）。
-- `recipes/manifest.json` の `recipes` 配列にメタ情報を1件追加。
-- `file` は通常 `<id>.json` を指します。`id` はURLハッシュ（`#<id>`）にも使われます。
+3) 静的サーバで `index.html` を配信
+
+- Python: `python -m http.server 8000`
+- または Node: `npx http-server -p 8000`（任意）
+
+4) ブラウザで開く
+
+```
+http://localhost:8000/
+```
+
+本番用ビルド（最小化）
+
+```
+npm run build
+```
+
+## 使い方（画面とルーティング）
+
+- ホーム `#`
+  - レシピ一覧。ジャンルで絞り込み（選択は `localStorage: ct.genre` に保持）
+  - 複数選択 → 「選択して計画」でプラン画面へ
+
+- レシピ詳細/プレビュー `#<id>`
+  - 材料、タイムライン、手順を表示
+  - 「計画する」→ `#plan/<id>` / 「調理を開始」→ `#cook/<id>`
+
+- 複数レシピの計画 `#plan/<id[,id...]>`
+  - キッチン資源の上限（コンロ/手作業/オーブン）を設定・保存（`ct-capacity`）
+  - 結合タイムラインのバーをドラッグで移動、行の並べ替えも可能
+  - 赤帯で資源衝突を可視化。全体表示長さも調整可
+  - 「調理を開始」で `#cook/<id[,id...]>` へ
+
+- 調理の再生 `#cook/<id[,id...]>`
+  - 速度 1x/10x/60x、進捗バー、ライブタイムライン
+  - 「今やること」を上位から提示（材料も表示）
+  - 工程終了時にデスクトップ通知＋トースト表示
+
+## データ仕様（Schema v2）
+
+レシピは JSON で管理します。複数レシピの一覧は `recipes/manifest.json` を読み、選択後に各 `recipes/<id>.json` を取得します。
+
+### `recipes/manifest.json`
+
+- version / generatedAt: スキーマ版と生成日時
+- recipes[]: レシピのメタデータ
+  - id / title / file / servings / tags / genre
+  - makespan: タイムラインの最終終了時刻（分）
+  - sumStepTime: `steps[].time` の総和（並列性を無視した延べ作業時間）
+  - order: 一覧の表示順指定
+
+### `recipes/<id>.json`
+
+- version, id, title, servings, tags, genre, author, updatedAt
+- materials[]: `{ id, name, amount }`
+- steps[]:
+  - id, label
+  - timeline: `{ start, end }`（分）
+  - time: 所要分数（通常は `end - start`）
+  - req: リソース要求（例: `{ "stove": 1, "hands": 1 }`）
+  - after: 依存する手順ID配列（開始順序を制約）
+  - uses: 使用する材料ID配列（`materials[].id` を参照）
+  - instructions: 説明文
+  - kind: `prep|cook|finish` などカテゴリ
+  - slack: 許容遅延（開始を元の `start` からどれだけ後ろにずらせるか, 分）
+
+備考:
+
+- 複数レシピ結合時は手順IDを `<recipeId>:<stepId>` にユニーク化します。
+- リソースキーは任意ですが UI ラベルは `stove/hands/oven` を想定（他キーはそのまま表示）。
+
+### レシピを追加する
+
+1) `recipes/<id>.json` を作成（`recipes/pasta.json` を雛形に）
+2) `recipes/manifest.json` の `recipes[]` にメタを追加（`file` が `<id>.json` を指す）
+
+## スケジューリングと衝突検知（`lib/scheduler.js`）
+
+- `computeConflicts(steps, capacity)`: 資源ごとの使用過多区間を返す（`res,start,end,usage,cap,culprits`）
+- `scheduleBackward(...)`: 依存関係を崩さず slack 範囲で後方寄せ（任意の `targetEnd` 指定可）
+- `scheduleGreedy(...)`: 容量を超えない範囲で順に配置（見つからない場合は最短に強制配置）
+- `levelResources(...)`: 改善が見込める工程を後ろへずらし、衝突やピークを低減
+- `schedulePipeline(...)`: 上記の後方→貪欲→レベリングを順に適用
+
+目的（objective）は `min_conflicts` または `min_peak_hands` を選択できます（UI 連携は今後拡張余地あり）。
+
+## プロジェクト構成
+
+- `index.html` / `main.js`: エントリ
+- `lib/router.js`: ハッシュルーティング（`home/preview/plan/cook`）
+- `lib/views/`: 各ビュー
+  - `menu.js` 一覧と複数選択、ジャンル絞り込み
+  - `recipe.js` レシピ詳細
+  - `timeline.js` タイムライン描画＋ドラッグ/折りたたみ
+  - `cooking.js` 単一レシピの再生
+  - `multi-timeline.js` 複数レシピの結合タイムライン
+  - `multi-cooking.js` 複数レシピの再生
+- `lib/data.js`: マニフェスト/レシピ取得と簡易キャッシュ
+- `lib/scheduler.js`: 衝突検知・スケジューリング
+- `recipes/`: マニフェストとレシピ本体
+- `input.css` → `output.css`: Tailwind v4 CLI で生成
+- `test.html`: UI プロトタイプ（アプリ本体とは分離）
+
+## ローカルストレージ
+
+- `ct.genre`: ホームのジャンル絞り込み
+- `ct-capacity`: 複数レシピ計画時の資源上限
+
+## ライセンス
+
+MIT License（`LICENSE` を参照）
+
+## 今後の改善候補
+
+- 目的関数のUI連携（衝突最小/ピーク抑制の切替）
+- slack や依存関係を考慮したドラッグ制約
+- タイムライン編集からレシピJSONへの差分書き戻し
+- スマホ向けのドラッグ操作改善
