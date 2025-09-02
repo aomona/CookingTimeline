@@ -1,0 +1,105 @@
+{
+  "version": 2,
+  "id": "fried_rice",
+  "title": "チャーハン",
+  "servings": 2,
+  "tags": ["rice", "quick", "one-pan"],
+  "genre": "chinese",
+  "author": "system",
+  "updatedAt": "2025-09-02",
+  "materials": [
+    { "id": "1",  "name": "冷やご飯",               "amount": "300g" },
+    { "id": "2",  "name": "卵",                   "amount": "2個" },
+    { "id": "3",  "name": "青ねぎ(小口切り)",     "amount": "20g" },
+    { "id": "4",  "name": "ハム(または焼豚/ベーコン)", "amount": "50g さいの目" },
+    { "id": "5",  "name": "サラダ油",             "amount": "大さじ1.5" },
+    { "id": "6",  "name": "ごま油(仕上げ)",       "amount": "小さじ1" },
+    { "id": "7",  "name": "醤油",                 "amount": "小さじ2" },
+    { "id": "8",  "name": "塩",                   "amount": "少々" },
+    { "id": "9",  "name": "黒こしょう",           "amount": "少々" },
+    { "id": "10", "name": "鶏がらスープの素(任意)", "amount": "小さじ1/2" }
+  ],
+  "steps": [
+    {
+      "id": "prep",
+      "label": "具材を刻み、ご飯をほぐす",
+      "timeline": { "start": 0, "end": 5 },
+      "time": 5,
+      "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 15,
+      "uses": ["1", "3", "4"],
+      "instructions": "青ねぎは小口切り、ハムはさいの目。冷やご飯はボウルでほぐしてダマを減らす。"
+    },
+    {
+      "id": "preheat",
+      "label": "フライパンをしっかり予熱",
+      "timeline": { "start": 4, "end": 6 },
+      "time": 2,
+      "req": { "stove": 1 },
+      "kind": "cook",
+      "slack": 10,
+      "uses": ["5"],
+      "instructions": "強めの中火でフライパンを温め、サラダ油をなじませる。"
+    },
+    {
+      "id": "scramble_egg",
+      "label": "卵を半熟に炒めて一旦取り出す",
+      "timeline": { "start": 6, "end": 8 },
+      "time": 2,
+      "req": { "stove": 1, "hands": 1 },
+      "after": ["preheat"],
+      "kind": "cook",
+      "slack": 5,
+      "uses": ["2", "5"],
+      "instructions": "溶き卵を流し入れ、さっと半熟にして皿に取り出す。"
+    },
+    {
+      "id": "stir_rice",
+      "label": "ご飯を炒めてパラっとさせる",
+      "timeline": { "start": 8, "end": 12 },
+      "time": 4,
+      "req": { "stove": 1, "hands": 1 },
+      "after": ["scramble_egg"],
+      "kind": "cook",
+      "slack": 5,
+      "uses": ["1", "5", "10"],
+      "instructions": "油を少量足し、ご飯を入れて切るように炒める。ダマをつぶし、鶏がら(任意)で下味。"
+    },
+    {
+      "id": "combine",
+      "label": "具材と卵を戻して全体を混ぜる",
+      "timeline": { "start": 12, "end": 14 },
+      "time": 2,
+      "req": { "stove": 1, "hands": 1 },
+      "after": ["stir_rice"],
+      "kind": "cook",
+      "slack": 5,
+      "uses": ["2", "3", "4"],
+      "instructions": "ハムとねぎを加えて炒め、卵を戻して全体を均一に。"
+    },
+    {
+      "id": "season",
+      "label": "鍋肌に醤油、塩こしょうで味を決める",
+      "timeline": { "start": 14, "end": 15 },
+      "time": 1,
+      "req": { "stove": 1, "hands": 1 },
+      "after": ["combine"],
+      "kind": "finish",
+      "slack": 5,
+      "uses": ["7", "8", "9", "6"],
+      "instructions": "鍋肌から醤油を回し入れて香り付け。塩こしょうで調整し、火を止めてごま油で風味付け。"
+    },
+    {
+      "id": "plate",
+      "label": "盛り付け",
+      "timeline": { "start": 15, "end": 16 },
+      "time": 1,
+      "req": { "hands": 1 },
+      "after": ["season"],
+      "kind": "finish",
+      "slack": 5,
+      "instructions": "器に高くこんもりと盛り付ける。"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "version": 2,
+  "id": "gyoza",
+  "title": "餃子",
+  "servings": 3,
+  "tags": ["dumpling", "pan", "chinese"],
+  "genre": "chinese",
+  "author": "system",
+  "updatedAt": "2025-09-02",
+  "materials": [
+    { "id": "1",  "name": "餃子の皮",         "amount": "24枚" },
+    { "id": "2",  "name": "豚ひき肉",         "amount": "200g" },
+    { "id": "3",  "name": "キャベツ",         "amount": "150g(みじん)" },
+    { "id": "4",  "name": "にら",             "amount": "1/2束(小口)" },
+    { "id": "5",  "name": "生姜",             "amount": "1片(みじん)" },
+    { "id": "6",  "name": "にんにく",         "amount": "1片(みじん)" },
+    { "id": "7",  "name": "塩・こしょう",     "amount": "少々" },
+    { "id": "8",  "name": "しょうゆ",         "amount": "大さじ1" },
+    { "id": "9",  "name": "ごま油",           "amount": "小さじ2" },
+    { "id": "10", "name": "サラダ油",         "amount": "大さじ1" },
+    { "id": "11", "name": "片栗粉",           "amount": "小さじ2" },
+    { "id": "12", "name": "水",               "amount": "100ml" }
+  ],
+  "steps": [
+    {
+      "id": "prep_fill",
+      "label": "具を作る",
+      "timeline": { "start": 0, "end": 10 },
+      "time": 10,
+      "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 15,
+      "uses": ["2", "3", "4", "5", "6", "7", "8", "9", "11"],
+      "instructions": "野菜は塩もみして水気を絞り、ひき肉と調味料・片栗粉・ごま油で粘りが出るまで混ぜる。"
+    },
+    {
+      "id": "wrap",
+      "label": "包む",
+      "timeline": { "start": 10, "end": 20 },
+      "time": 10,
+      "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 10,
+      "uses": ["1"],
+      "instructions": "皮で具を包み、縁に水をつけてヒダを寄せて閉じる。"
+    },
+    {
+      "id": "preheat_pan",
+      "label": "フライパンを予熱",
+      "timeline": { "start": 18, "end": 21 },
+      "time": 3,
+      "req": { "stove": 1 },
+      "kind": "cook",
+      "slack": 5,
+      "uses": ["10"],
+      "instructions": "油をなじませ中火で予熱。"
+    },
+    {
+      "id": "fry_bottom",
+      "label": "底面を焼く",
+      "timeline": { "start": 21, "end": 24 },
+      "time": 3,
+      "req": { "stove": 1, "hands": 1 },
+      "kind": "cook",
+      "slack": 5,
+      "uses": ["10", "1"],
+      "instructions": "並べて底面に焼き色をつける。"
+    },
+    {
+      "id": "steam",
+      "label": "蒸し焼き",
+      "timeline": { "start": 24, "end": 29 },
+      "time": 5,
+      "req": { "stove": 1 },
+      "kind": "cook",
+      "slack": 5,
+      "uses": ["12"],
+      "instructions": "水を注ぎ蓋をして蒸し焼き。水分が飛ぶまで。"
+    },
+    {
+      "id": "crisp",
+      "label": "仕上げの香りとカリッと",
+      "timeline": { "start": 29, "end": 31 },
+      "time": 2,
+      "req": { "stove": 1 },
+      "kind": "cook",
+      "slack": 5,
+      "uses": ["9"],
+      "instructions": "ごま油を回し入れてカリッと仕上げる。"
+    },
+    {
+      "id": "plate",
+      "label": "盛り付け",
+      "timeline": { "start": 31, "end": 33 },
+      "time": 2,
+      "req": { "hands": 1 },
+      "kind": "finish",
+      "slack": 5,
+      "instructions": "器に盛り付ける。"
+    }
+  ]
+}

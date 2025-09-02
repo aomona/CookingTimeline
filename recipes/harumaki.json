@@ -1,0 +1,103 @@
+{
+  "version": 2,
+  "id": "harumaki",
+  "title": "春巻き",
+  "servings": 4,
+  "tags": ["fried", "chinese", "snack"],
+  "genre": "chinese",
+  "author": "system",
+  "updatedAt": "2025-09-02",
+  "materials": [
+    { "id": "1",  "name": "春巻きの皮",           "amount": "10枚" },
+    { "id": "2",  "name": "豚ひき肉",             "amount": "150g" },
+    { "id": "3",  "name": "もやし",               "amount": "100g" },
+    { "id": "4",  "name": "にんじん(細切り)",     "amount": "50g" },
+    { "id": "5",  "name": "キャベツ(または白菜)", "amount": "150g(細切り)" },
+    { "id": "6",  "name": "しいたけ(薄切り)",     "amount": "3枚" },
+    { "id": "7",  "name": "にんにく",             "amount": "1片(みじん)" },
+    { "id": "8",  "name": "生姜",                 "amount": "1片(みじん)" },
+    { "id": "9",  "name": "しょうゆ",             "amount": "大さじ1.5" },
+    { "id": "10", "name": "砂糖",                 "amount": "小さじ1" },
+    { "id": "11", "name": "片栗粉",               "amount": "大さじ1(＋水)" },
+    { "id": "12", "name": "ごま油",               "amount": "小さじ1" },
+    { "id": "13", "name": "サラダ油",             "amount": "適量" },
+    { "id": "14", "name": "小麦粉のり",           "amount": "水溶き小麦粉 大さじ1" }
+  ],
+  "steps": [
+    {
+      "id": "stir_filling",
+      "label": "具を炒める",
+      "timeline": { "start": 0, "end": 10 },
+      "time": 10,
+      "req": { "stove": 1, "hands": 1 },
+      "kind": "cook",
+      "slack": 15,
+      "uses": ["13", "2", "7", "8", "5", "4", "3", "6", "9", "10", "12", "11"],
+      "instructions": "油でにんにく・生姜を炒め香りを出し、ひき肉→野菜の順に炒め調味。水溶き片栗粉で軽くまとめ冷ましやすくする。"
+    },
+    {
+      "id": "cool",
+      "label": "具を冷ます",
+      "timeline": { "start": 10, "end": 20 },
+      "time": 10,
+      "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 15,
+      "instructions": "バットに広げて粗熱を取る。"
+    },
+    {
+      "id": "wrap",
+      "label": "包む",
+      "timeline": { "start": 20, "end": 30 },
+      "time": 10,
+      "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 15,
+      "uses": ["1", "14"],
+      "instructions": "皮で具を巻き、のりで口を閉じる。巻き終わりを下にしておく。"
+    },
+    {
+      "id": "preheat_oil",
+      "label": "油を予熱",
+      "timeline": { "start": 25, "end": 30 },
+      "time": 5,
+      "req": { "stove": 1 },
+      "kind": "cook",
+      "slack": 10,
+      "uses": ["13"],
+      "instructions": "170℃に油を温める(包む作業の終盤で開始)。"
+    },
+    {
+      "id": "fry",
+      "label": "揚げる",
+      "timeline": { "start": 30, "end": 36 },
+      "time": 6,
+      "req": { "stove": 1, "hands": 1 },
+      "kind": "cook",
+      "slack": 5,
+      "after": ["preheat_oil", "wrap"],
+      "uses": ["13", "1"],
+      "instructions": "転がしながら色よくカリッと揚げる。"
+    },
+    {
+      "id": "drain",
+      "label": "油を切る",
+      "timeline": { "start": 36, "end": 38 },
+      "time": 2,
+      "req": { "hands": 1 },
+      "kind": "finish",
+      "slack": 5,
+      "instructions": "油を切って余熱で火を通す。"
+    },
+    {
+      "id": "plate",
+      "label": "盛り付け",
+      "timeline": { "start": 38, "end": 39 },
+      "time": 1,
+      "req": { "hands": 1 },
+      "kind": "finish",
+      "slack": 5,
+      "instructions": "器に盛り付ける。"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "version": 2,
+  "id": "omurice",
+  "title": "オムライス",
+  "servings": 2,
+  "tags": ["rice", "egg", "quick"],
+  "genre": "japanese",
+  "author": "system",
+  "updatedAt": "2025-09-02",
+  "materials": [
+    { "id": "1",  "name": "ご飯",             "amount": "300g(温かいもの)" },
+    { "id": "2",  "name": "鶏もも肉",         "amount": "120g(小さめに切る)" },
+    { "id": "3",  "name": "玉ねぎ",           "amount": "1/2個(みじん)" },
+    { "id": "4",  "name": "ピーマン(任意)",   "amount": "1個(みじん)" },
+    { "id": "5",  "name": "ケチャップ",       "amount": "大さじ3+仕上げ用" },
+    { "id": "6",  "name": "塩・こしょう",     "amount": "少々" },
+    { "id": "7",  "name": "卵",               "amount": "4個" },
+    { "id": "8",  "name": "バター",           "amount": "20g" },
+    { "id": "9",  "name": "サラダ油",         "amount": "大さじ1" },
+    { "id": "10", "name": "牛乳(任意)",       "amount": "大さじ1" }
+  ],
+  "steps": [
+    {
+      "id": "prep",
+      "label": "下準備(具を刻む・卵を割る)",
+      "timeline": { "start": 0, "end": 4 },
+      "time": 4,
+      "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 10,
+      "uses": ["2", "3", "4", "7"],
+      "instructions": "具材を刻み、卵を割りほぐす(牛乳を入れる場合は加える)。"
+    },
+    {
+      "id": "ketchup_rice",
+      "label": "ケチャップライスを作る",
+      "timeline": { "start": 4, "end": 11 },
+      "time": 7,
+      "req": { "stove": 1, "hands": 1 },
+      "kind": "cook",
+      "slack": 10,
+      "uses": ["9", "2", "3", "4", "1", "5", "6"],
+      "instructions": "油で鶏肉と玉ねぎ(あればピーマン)を炒め、ご飯とケチャップを加えて炒め合わせ、塩こしょうで調える。"
+    },
+    {
+      "id": "whisk_egg",
+      "label": "卵液を整える",
+      "timeline": { "start": 9, "end": 11 },
+      "time": 2,
+      "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 5,
+      "uses": ["7", "10"],
+      "instructions": "卵液の塩加減を整える。"
+    },
+    {
+      "id": "mound_rice",
+      "label": "ライスを皿に盛る",
+      "timeline": { "start": 11, "end": 13 },
+      "time": 2,
+      "req": { "hands": 1 },
+      "kind": "finish",
+      "slack": 5,
+      "uses": ["1"],
+      "instructions": "楕円形に高めに盛り付けておく。"
+    },
+    {
+      "id": "omelette",
+      "label": "オムレツを作る",
+      "timeline": { "start": 13, "end": 17 },
+      "time": 4,
+      "req": { "stove": 1, "hands": 1 },
+      "kind": "cook",
+      "slack": 5,
+      "after": ["ketchup_rice", "whisk_egg"],
+      "uses": ["8", "7"],
+      "instructions": "フライパンにバターを熱し、卵液を流して半熟の薄焼きに。ライスに被せられる大きさに整える。"
+    },
+    {
+      "id": "plate",
+      "label": "仕上げ",
+      "timeline": { "start": 17, "end": 18 },
+      "time": 1,
+      "req": { "hands": 1 },
+      "kind": "finish",
+      "slack": 5,
+      "uses": ["5"],
+      "instructions": "卵をライスにのせ、ケチャップをかけて完成。"
+    }
+  ]
+}

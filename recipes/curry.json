@@ -1,9 +1,10 @@
 {
-  "version": 1,
+  "version": 2,
   "id": "curry",
   "title": "カレー",
   "servings": 4,
   "tags": ["curry", "stew", "basic"],
+  "genre": "japanese",
   "author": "system",
   "updatedAt": "2025-08-31",
   "materials": [
@@ -25,6 +26,8 @@
       "timeline": { "start": 0, "end": 15 },
       "time": 15,
       "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 30,
       "uses": ["1", "2", "3", "4"],
       "instructions": "玉ねぎは薄切り。にんじんは乱切り。じゃがいもは一口大に切り、水にさらす。肉は一口大に切り塩こしょうを軽く振る。"
     },
@@ -34,6 +37,8 @@
       "timeline": { "start": 15, "end": 30 },
       "time": 15,
       "req": { "stove": 1, "hands": 1 },
+      "kind": "cook",
+      "slack": 15,
       "after": ["prep"],
       "uses": ["1", "7", "8", "9"],
       "instructions": "鍋に油を熱し、にんにく・生姜を軽く炒め香りを出す。玉ねぎを加え、焦げないように中弱火でじっくり炒める。"
@@ -44,6 +49,8 @@
       "timeline": { "start": 30, "end": 36 },
       "time": 6,
       "req": { "stove": 1, "hands": 1 },
+      "kind": "cook",
+      "slack": 10,
       "after": ["saute_onion"],
       "uses": ["4", "10"],
       "instructions": "肉を鍋に入れて表面の色が変わるまで炒め、塩こしょうで軽く下味をつける。"
@@ -54,6 +61,8 @@
       "timeline": { "start": 36, "end": 42 },
       "time": 6,
       "req": { "stove": 1, "hands": 1 },
+      "kind": "cook",
+      "slack": 10,
       "after": ["brown_meat"],
       "uses": ["2", "3"],
       "instructions": "にんじん・じゃがいもを加え、全体に油が回るまで炒める。"
@@ -64,6 +73,8 @@
       "timeline": { "start": 42, "end": 72 },
       "time": 30,
       "req": { "stove": 1 },
+      "kind": "cook",
+      "slack": 20,
       "after": ["saute_veg"],
       "uses": ["6"],
       "instructions": "水を注ぎ強火で沸かす。アクを取り、中火〜弱火に落として野菜が柔らかくなるまで煮る。"
@@ -74,6 +85,8 @@
       "timeline": { "start": 72, "end": 77 },
       "time": 5,
       "req": { "hands": 1 },
+      "kind": "finish",
+      "slack": 5,
       "after": ["simmer1"],
       "uses": ["5"],
       "instructions": "火を止め、カレールウを割り入れてゆっくり溶かす。ダマが残らないようよく混ぜる。"
@@ -84,6 +97,8 @@
       "timeline": { "start": 77, "end": 87 },
       "time": 10,
       "req": { "stove": 1 },
+      "kind": "cook",
+      "slack": 10,
       "after": ["add_roux"],
       "instructions": "弱火でとろみが付くまで軽く煮る。焦げないよう時々混ぜる。"
     },
@@ -93,10 +108,11 @@
       "timeline": { "start": 87, "end": 92 },
       "time": 5,
       "req": { "hands": 1 },
+      "kind": "finish",
+      "slack": 5,
       "after": ["simmer2"],
       "uses": ["10"],
       "instructions": "塩・こしょうで味を整える。必要なら水分量を調整し、火を止めて完成。"
     }
   ]
 }
-

@@ -1,0 +1,70 @@
+{
+  "version": 2,
+  "id": "salad",
+  "title": "グリーンサラダ",
+  "servings": 2,
+  "tags": ["salad", "quick", "healthy"],
+  "genre": "western",
+  "author": "system",
+  "updatedAt": "2025-09-02",
+  "materials": [
+    { "id": "1",  "name": "レタス(またはベビーリーフ)", "amount": "120g" },
+    { "id": "2",  "name": "きゅうり",                 "amount": "1本(薄切り)" },
+    { "id": "3",  "name": "トマト",                   "amount": "1個(くし切り)" },
+    { "id": "4",  "name": "紫玉ねぎ",                 "amount": "1/4個(薄切り)" },
+    { "id": "5",  "name": "オリーブオイル",           "amount": "大さじ2" },
+    { "id": "6",  "name": "酢(またはレモン汁)",       "amount": "大さじ1" },
+    { "id": "7",  "name": "はちみつ(砂糖でも可)",     "amount": "小さじ1" },
+    { "id": "8",  "name": "塩",                       "amount": "少々" },
+    { "id": "9",  "name": "黒こしょう",               "amount": "少々" },
+    { "id": "10", "name": "クルトン(お好み)",         "amount": "適量" }
+  ],
+  "steps": [
+    {
+      "id": "wash_cut",
+      "label": "野菜を洗って切る",
+      "timeline": { "start": 0, "end": 8 },
+      "time": 8,
+      "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 15,
+      "uses": ["1", "2", "3", "4"],
+      "instructions": "レタスは食べやすい大きさにちぎり、きゅうりは薄切り、トマトはくし切り、紫玉ねぎは薄切りにして水にさっとさらし水気を切る。"
+    },
+    {
+      "id": "dressing",
+      "label": "ドレッシングを作る",
+      "timeline": { "start": 3, "end": 8 },
+      "time": 5,
+      "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 15,
+      "uses": ["5", "6", "7", "8", "9"],
+      "instructions": "ボウルにオリーブオイル・酢(またはレモン汁)・はちみつ・塩・黒こしょうを入れ、よく混ぜて乳化させる。味をみて塩分・酸味を調整。"
+    },
+    {
+      "id": "toss",
+      "label": "和える",
+      "timeline": { "start": 8, "end": 10 },
+      "time": 2,
+      "req": { "hands": 1 },
+      "after": ["wash_cut", "dressing"],
+      "kind": "finish",
+      "slack": 5,
+      "uses": ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+      "instructions": "水気をよく切った野菜をボウルに入れ、食べる直前にドレッシングで軽く和える。和えすぎると水っぽくなるので手早く。"
+    },
+    {
+      "id": "plate",
+      "label": "盛り付けて仕上げ",
+      "timeline": { "start": 10, "end": 12 },
+      "time": 2,
+      "req": { "hands": 1 },
+      "after": ["toss"],
+      "kind": "finish",
+      "slack": 5,
+      "uses": ["10", "9"],
+      "instructions": "器に盛り付け、クルトンを散らし、仕上げに黒こしょうをひく。"
+    }
+  ]
+}

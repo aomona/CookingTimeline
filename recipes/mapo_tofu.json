@@ -1,0 +1,104 @@
+{
+  "version": 2,
+  "id": "mapo_tofu",
+  "title": "麻婆豆腐",
+  "servings": 3,
+  "tags": ["chinese", "spicy", "stir-fry"],
+  "genre": "chinese",
+  "author": "system",
+  "updatedAt": "2025-09-02",
+  "materials": [
+    { "id": "1",  "name": "豆腐(木綿)",       "amount": "350g(一口大)" },
+    { "id": "2",  "name": "豚ひき肉",         "amount": "150g" },
+    { "id": "3",  "name": "長ねぎ",           "amount": "1/2本(みじん)" },
+    { "id": "4",  "name": "にんにく",         "amount": "1片(みじん)" },
+    { "id": "5",  "name": "生姜",             "amount": "1片(みじん)" },
+    { "id": "6",  "name": "豆板醤",           "amount": "小さじ1.5" },
+    { "id": "7",  "name": "甜麺醤",           "amount": "小さじ1" },
+    { "id": "8",  "name": "しょうゆ",         "amount": "小さじ2" },
+    { "id": "9",  "name": "中華スープ",       "amount": "200ml" },
+    { "id": "10", "name": "片栗粉",           "amount": "小さじ2(＋水)" },
+    { "id": "11", "name": "サラダ油",         "amount": "大さじ1" },
+    { "id": "12", "name": "花椒(お好み)",     "amount": "少々" },
+    { "id": "13", "name": "ごま油",           "amount": "小さじ1" }
+  ],
+  "steps": [
+    {
+      "id": "prep",
+      "label": "下ごしらえ",
+      "timeline": { "start": 0, "end": 5 },
+      "time": 5,
+      "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 10,
+      "uses": ["1", "3", "4", "5"],
+      "instructions": "豆腐は水切りし一口大に。ねぎ・にんにく・生姜を刻む。"
+    },
+    {
+      "id": "aromatics",
+      "label": "香味を炒める",
+      "timeline": { "start": 5, "end": 8 },
+      "time": 3,
+      "req": { "stove": 1, "hands": 1 },
+      "kind": "cook",
+      "slack": 5,
+      "uses": ["11", "4", "5", "6", "7"],
+      "instructions": "油でにんにく・生姜・豆板醤・甜麺醤を炒め香りを立たせる。"
+    },
+    {
+      "id": "meat",
+      "label": "ひき肉を炒める",
+      "timeline": { "start": 8, "end": 11 },
+      "time": 3,
+      "req": { "stove": 1, "hands": 1 },
+      "kind": "cook",
+      "slack": 5,
+      "uses": ["2"],
+      "instructions": "ひき肉を加えてポロポロになるまで炒める。"
+    },
+    {
+      "id": "sauce_mix",
+      "label": "調味液を準備",
+      "timeline": { "start": 8, "end": 10 },
+      "time": 2,
+      "req": { "hands": 1 },
+      "kind": "prep",
+      "slack": 5,
+      "uses": ["8", "9"],
+      "instructions": "しょうゆと中華スープを合わせておく。"
+    },
+    {
+      "id": "simmer",
+      "label": "豆腐を煮る",
+      "timeline": { "start": 11, "end": 15 },
+      "time": 4,
+      "req": { "stove": 1 },
+      "kind": "cook",
+      "slack": 5,
+      "uses": ["1", "9"],
+      "instructions": "豆腐とスープを加え、崩さないように軽く煮る。"
+    },
+    {
+      "id": "thicken",
+      "label": "とろみ付け",
+      "timeline": { "start": 15, "end": 17 },
+      "time": 2,
+      "req": { "stove": 1 },
+      "kind": "cook",
+      "slack": 5,
+      "uses": ["10"],
+      "instructions": "水溶き片栗粉でとろみを付ける。"
+    },
+    {
+      "id": "finish",
+      "label": "仕上げ",
+      "timeline": { "start": 17, "end": 18 },
+      "time": 1,
+      "req": { "hands": 1 },
+      "kind": "finish",
+      "slack": 5,
+      "uses": ["13", "12"],
+      "instructions": "火を止め、ごま油と花椒で仕上げる。"
+    }
+  ]
+}
